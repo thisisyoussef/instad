@@ -1,6 +1,6 @@
 # Instad
 
-Instad is a mobile application built with Flutter. It allows users to instantly discover, share and interact with popular and trending content from various social media platforms.
+Instad is a mobile application built with Flutter. It allows users to instantly discover, share and interact with sports venues in the area.
 
 ## Table of Contents
 
@@ -14,7 +14,7 @@ Instad is a mobile application built with Flutter. It allows users to instantly 
 
 ## Project Overview
 
-Instad takes advantage of the power of Flutter, a UI toolkit by Google that enables the rapid development of high-quality, native cross-platform apps for Android, iOS, and the Web. The app integrates various social media APIs to provide users with a seamless and unified browsing experience.
+Instad takes advantage of the power of Flutter, a UI toolkit by Google that enables the rapid development of high-quality, native cross-platform apps for Android, iOS, and the Web. The app integrates the eGoogle Maps API to provide users with a seamless and unified search experience.
 
 ## Installation Instructions
 
@@ -48,15 +48,14 @@ The Instad app should now be running on your device.
 
 ## Usage Guide
 
-Once you have successfully installed and launched the app, you can start browsing and interacting with content from various social media platforms. The app provides a seamless experience, allowing you to enjoy trending and popular content without switching between multiple apps.
+Once you have successfully installed and launched the app, you can start browsing and interacting with sports venues from various areas and sports. The backend is hosted on Firebase.
 
 ## Features and Functionality
 
-- Browse popular and trending content from various social media platforms.
-- Search and discover new content based on your interests.
-- Share and interact with content within the app.
-- Customize your browsing experience by setting preferences.
-- Support for Android, iOS, and Web platforms.
+- Browse Sports Venues in the area.
+- Search and discover new venues based on your interests.
+- Book a sports venue.
+- Support for Android and iOS.
 
 ## Contributing Guidelines
 
@@ -78,7 +77,9 @@ Instad uses the following technologies and tools that contribute to its function
 
 - [Flutter](https://flutter.dev/) - The main UI framework for building the app. Ensures native performance, rapid development, and ease of maintenance.
 - [Dart](https://dart.dev/) - The programming language used to develop the app. Provides powerful features and strong language safety.
-- [Social Media APIs](#) - Used to fetch and interact with content from various social media platforms.
+- [Google Maps APIs](#) - Used to display locations and directions to sports venues.
 - [Git](https://git-scm.com/) - Used for version control and collaboration.
+- [Firebase](#) - Used to store and fetch app data.
+
 
 These technologies and tools allow for efficient development, improved performance, and cross-platform compatibility, which helps increase the user base and engagement.
