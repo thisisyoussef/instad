@@ -1,85 +1,104 @@
-# Instad
+# Instad — Sports Venue Discovery & Booking Platform
 
-Instad is a mobile application built with Flutter. It allows users to instantly discover, share and interact with sports venues in the area.
+A 3-app ecosystem for connecting athletes with sports venues. Users discover nearby courts and fields, venue owners manage their listings and bookings, and a shared core library handles the business logic and API integrations. Built with Flutter for iOS and Android.
 
-## Table of Contents
+![Flutter](https://img.shields.io/badge/Flutter-02569B?logo=flutter&logoColor=white)
+![Dart](https://img.shields.io/badge/Dart-0175C2?logo=dart&logoColor=white)
+![Google Maps](https://img.shields.io/badge/Google_Maps-4285F4?logo=googlemaps&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-FFCA28?logo=firebase&logoColor=black)
 
-- [Project Overview](#project-overview)
-- [Installation Instructions](#installation-instructions)
-- [Usage Guide](#usage-guide)
-- [Features and Functionality](#features-and-functionality)
-- [Contributing Guidelines](#contributing-guidelines)
-- [License Information](#license-information)
-- [Contact Information](#contact-information)
+## The Problem
 
-## Project Overview
+Finding and booking sports venues is fragmented. Athletes search Google Maps, call venues, and hope for availability. Venue owners have no easy way to digitize their booking process. There's no platform that connects both sides.
 
-Instad takes advantage of the power of Flutter, a UI toolkit by Google that enables the rapid development of high-quality, native cross-platform apps for Android, iOS, and the Web. The app integrates the eGoogle Maps API to provide users with a seamless and unified search experience.
+## The Ecosystem
 
-## Installation Instructions
+```mermaid
+graph TB
+    subgraph Core ["instad (Core Library)"]
+        Models["Shared Models"]
+        API["API Clients"]
+        Maps["Google Maps Integration"]
+        Utils["Shared Utilities"]
+    end
 
-To install and run the project locally, follow these steps:
+    subgraph UserApp ["instad_user (Athlete App)"]
+        Discover["Venue Discovery"]
+        Search["Search & Filter"]
+        Book["Booking Flow"]
+        Reviews["Reviews & Ratings"]
+    end
 
-1. Ensure that you have the latest version of Flutter installed on your development machine by following the [Flutter installation guide](https://flutter.dev/docs/get-started/install).
+    subgraph VenueApp ["instad_venue (Venue Owner App)"]
+        Manage["Listing Management"]
+        Calendar["Availability Calendar"]
+        Bookings["Booking Management"]
+        Comms["Customer Communication"]
+    end
 
-2. Clone the repository using the following command:
+    subgraph Backend ["Firebase Backend"]
+        Auth["Authentication"]
+        Firestore["Firestore Database"]
+        Storage["Cloud Storage"]
+        Functions["Cloud Functions"]
+    end
 
-   ```
-   git clone https://github.com/thisisyoussef/instad.git
-   ```
+    Core --> UserApp
+    Core --> VenueApp
+    UserApp --> Backend
+    VenueApp --> Backend
+```
 
-   Alternatively, download the repository as a ZIP and extract it to a directory of your choice.
+| Repo | Purpose | What it does |
+|------|---------|-------------|
+| **[instad](https://github.com/thisisyoussef/instad)** | Core library | Shared data models, API clients, Google Maps integration, utilities |
+| **[instad_user](https://github.com/thisisyoussef/instad_user)** | Athlete-facing app | Venue discovery, map-based search, filtering, booking flow, reviews |
+| **[instad_venue](https://github.com/thisisyoussef/instad_venue)** | Venue owner app | Listing CRUD, availability calendar, booking management, communication |
 
-3. Open the project directory in your code editor, and run the following command to install the required dependencies specified in `pubspec.yaml`:
+## Features
 
-   ```
-   flutter pub get
-   ```
+**User App (instad_user):**
+- Map-based venue discovery with Google Maps SDK
+- Filter by sport type, distance, amenities, price range, and availability
+- Venue detail pages with photo galleries, reviews, and pricing
+- Booking flow with time slot selection and confirmation
 
-4. Connect an Android or iOS device or start an emulator/simulator. Ensure that the device is running and detected by running `flutter devices`.
+**Venue Owner App (instad_venue):**
+- Create and manage venue listings with photos, descriptions, and amenity tags
+- Availability calendar with time slot management
+- View and manage incoming bookings
+- Customer communication tools
 
-5. Build and run the application using the following command:
+## Technical Highlights
 
-   ```
-   flutter run
-   ```
+- **Shared Library Architecture** — The `instad` core library is a standalone Flutter package imported by both apps. This means data models, API clients, and map utilities are defined once and shared — no code duplication, guaranteed consistency between apps.
+- **Google Maps Integration** — Custom map markers, real-time location tracking, distance calculations, and venue clustering for dense areas. The map layer handles both venue discovery (user app) and venue location setting (owner app).
+- **Firebase Full-Stack** — Auth for both user types, Firestore for real-time data sync, Cloud Storage for venue photos, and Cloud Functions for server-side logic (booking confirmations, notifications).
+- **Multi-App Monorepo Pattern** — Three separate repos with the core library as a git dependency. Each app can be built and deployed independently while sharing the same foundation.
 
-The Instad app should now be running on your device.
+## Tech Stack
 
-## Usage Guide
+| Layer | Technology |
+|-------|-----------|
+| Framework | Flutter (iOS + Android) |
+| Language | Dart |
+| Maps | Google Maps SDK |
+| Backend | Firebase (Auth, Firestore, Storage, Functions) |
+| Architecture | Shared core library + feature-specific apps |
+| State | Provider |
 
-Once you have successfully installed and launched the app, you can start browsing and interacting with sports venues from various areas and sports. The backend is hosted on Firebase.
+## Running Locally
 
-## Features and Functionality
+```bash
+# Clone all three repos
+git clone https://github.com/thisisyoussef/instad.git
+git clone https://github.com/thisisyoussef/instad_user.git
+git clone https://github.com/thisisyoussef/instad_venue.git
 
-- Browse Sports Venues in the area.
-- Search and discover new venues based on your interests.
-- Book a sports venue.
-- Support for Android and iOS.
+# Run the user app
+cd instad_user
+flutter pub get
+flutter run
+```
 
-## Contributing Guidelines
-
-We welcome contributions from developers and users alike. To contribute to this project, feel free to create a fork of the repository, make your changes, and submit a pull request.
-
-Ensure that your changes do not break existing functionality or introduce major bugs. It is also important to follow the code conventions and documentation standards used throughout the project.
-
-## License Information
-
-This project is licensed under the [MIT License](LICENSE). Contributions are subject to the same license.
-
-## Contact Information
-
-For any inquiries or suggestions, please feel free to contact the repository owner [Youssef](mailto:your_email@example.com).
-
-## Technologies and Tools
-
-Instad uses the following technologies and tools that contribute to its functionality, performance, and overall success:
-
-- [Flutter](https://flutter.dev/) - The main UI framework for building the app. Ensures native performance, rapid development, and ease of maintenance.
-- [Dart](https://dart.dev/) - The programming language used to develop the app. Provides powerful features and strong language safety.
-- [Google Maps APIs](#) - Used to display locations and directions to sports venues.
-- [Git](https://git-scm.com/) - Used for version control and collaboration.
-- [Firebase](#) - Used to store and fetch app data.
-
-
-These technologies and tools allow for efficient development, improved performance, and cross-platform compatibility, which helps increase the user base and engagement.
+Requires a Google Maps API key and Firebase project configuration (google-services.json / GoogleService-Info.plist).
